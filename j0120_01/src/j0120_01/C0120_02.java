@@ -6,24 +6,105 @@ public class C0120_02 {
 
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
+		// 조건문 - if,switch
+		// 반복문 - for,while
 		
-		int ran_num = (int)(Math.random()*100)+1;
+//		String num = "100";
+		int no = 10;
+		String name = "홍길동";
+		int num = 100;
+		String a = String.format("번호:%d, 이름:%s, 국어:%d \n ", no,name,num);
+		System.out.println(a);
+//		String b = System.out.printf("%010d \n",num);
 		
-		for(int i=0;i<10;i++) {
-			System.out.println("랜덤숫자를 맞춰 보세요. 숫자입력 >> ");
-			int input = scanner.nextInt();
-			if(ran_num>input) {
-				System.out.println("입력한 수보다 큰수입니다.");
-			}else if(ran_num<input) {
-				System.out.println("입력한 수보다 작은수입니다");
-			}else {
-				System.out.println("정답입니다.");
-				break;
-			}
-		}
 		
-		System.out.println("랜덤숫자 정답 : "+ran_num);
+//		int num = 100;
+//		System.out.printf("%10d \n",num);
+//		System.out.printf("%010d \n",num);
+		
+//		int i = 10;
+//		String name = "홍길동";
+//		double avg = 99.6799999;
+//		//"번호:10, 이름:홍길동, 평균:99.67"
+//		System.out.printf("번호:%d, 이름:%s, 평균:%.2f \n",i,name,avg);
+		
+		
+//		int i=0;
+//		int sum = 0;
+//		while(true) {
+//			if(sum>100) {
+//				break;
+//			}
+//			sum += i;
+//			i++;
+//		}
+//		System.out.println("i-1의 값 : "+(i-1));
+//		System.out.printf("%d-1의 sum의 값 : %d \n",i,sum-i);
+//		
+//		System.out.println("i의 값 : "+i);
+//		System.out.println("sum의 값 : "+sum);
+		
+		//무한반복
+//		for(;;) {
+//			break;
+//		}
+		
+		
+		
+		
+		
+//		int i=0;
+//		//반복문 이름 지정가능
+//		loop:while(true) {
+//			while(i<10) {
+//				if(i==0) {
+//					break loop; //반복문을 종료하는 것.
+//				}
+//			}
+//			
+//		}
+//		
+//		
+//		loop2:for(i=0;i<9;i++) {
+//			
+//		}
+		
+		
+		
+		
+//		int i = 11;
+//		do {
+//			System.out.println("실행");
+//			i++;
+//		}while(i<10);
+		
+		
+//		while(i<10) {
+//			System.out.println("실행");
+//			i++;
+//		}
+		
+		
+		
+		
+//		Scanner scanner = new Scanner(System.in);
+//		
+//		int ran_num = (int)(Math.random()*100)+1;
+//		
+//		for(int i=0;i<10;i++) {
+//			System.out.println("랜덤숫자를 맞춰 보세요. 숫자입력 >> ");
+//			int input = scanner.nextInt();
+//			if(ran_num>input) {
+//				System.out.println("입력한 수보다 큰수입니다.");
+//			}else if(ran_num<input) {
+//				System.out.println("입력한 수보다 작은수입니다");
+//			}else {
+//				System.out.println("정답입니다.");
+//				break;
+//			}
+//		}
+//		
+//		System.out.println("랜덤숫자 정답 : "+ran_num);
 		
 //		int i=0;
 //		while(i<10) {
