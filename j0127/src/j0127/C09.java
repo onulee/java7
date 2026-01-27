@@ -21,7 +21,8 @@ public class C09 {
 		System.out.println("---------");
 		System.out.print("구매물품 : ");
 		for(int i=0;i<b.count;i++) {
-			System.out.print(b.cart[i].name+" ");
+			Product p = (Product)b.list.get(i);
+			System.out.print(p.name+" ");
 		}
 		System.out.println();
 		
