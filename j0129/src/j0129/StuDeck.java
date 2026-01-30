@@ -1,6 +1,7 @@
 package j0129;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class StuDeck {
@@ -15,24 +16,65 @@ public class StuDeck {
 	// add,get,remove,size(),isEmpty()
 	ArrayList<Stuscore> list = new ArrayList();
 	Scanner scan = new Scanner(System.in);
-	String name;
-	int no,kor,eng,math,total;
+	String name,search;
+	int no,kor,eng,math,total,temp,choice;
 	double avg;
 	String[] title = {"번호","이름","국어","영어","수학","합계","평균"};
 	
-	//성적출력
+	//4. 성적삭제
+	void stu_delete() {
+		System.out.println("삭제할 학생이름을 입력하세요.>> ");
+		search = scan.next();
+		temp = 0;
+		for(int i=0;i<list.size();i++) {
+			Stuscore s = list.get(i);
+			if(s.getName().equals(search)) {
+				temp = 1;
+				//삭제할 학생을 찾은 경우
+				System.out.println(search+" 학생을 찾았습니다. 삭제하시겠습니까?(1.삭제,0.취소) ");
+				choice = scan.nextInt();
+				if(choice==1) {
+					list.remove(i);
+					System.out.println("삭제가 되었습니다.!");
+					break;
+				}else {
+					System.out.println("삭제가 취소되었습니다.!");
+					break;
+				}
+			}
+		}//for
+		
+		if(temp==0) {
+			System.out.println("찾고자 하는 학생이 없습니다. 다시 입력하세요.");
+		}
+
+	}
+	
+	
+	//2.성적출력
 	void stu_output() {
 		System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
 				title[0],title[1],title[2],title[3],
 				title[4],title[5],title[6]);
 		System.out.println("-----------------------------------------------------");
-		for(int i=0;i<list.size();i++) {
-			Stuscore s = list.get(i);
-//			System.out.println(list.get(i));
+		
+		//Iterator 사용출력
+		Iterator<Stuscore> it = list.iterator();
+		while(it.hasNext()) {
+			Stuscore s = it.next();
 			System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",
 					s.getNo(),s.getName(),s.getKor(),s.getEng(),
 					s.getMath(),s.getTotal(),s.getAvg());
-		}//for
+		}
+		
+		
+//		for(int i=0;i<list.size();i++) {
+//			Stuscore s = list.get(i);
+////			System.out.println(list.get(i));
+//			System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",
+//					s.getNo(),s.getName(),s.getKor(),s.getEng(),
+//					s.getMath(),s.getTotal(),s.getAvg());
+//		}//for
 		System.out.println();
 	}
 	
@@ -58,6 +100,9 @@ public class StuDeck {
 		System.out.println("1.성적입력");
 		System.out.println("2.성적출력");
 		System.out.println("3.성적수정");
+		System.out.println("4.성적삭제");
+		System.out.println("5.성적검색");
+		System.out.println("0.프로그램종료");
 		System.out.println("-----------------------");
 		System.out.println("원하는 번호를 입력하세요.>> ");
 	}
