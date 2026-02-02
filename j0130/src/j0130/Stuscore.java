@@ -33,6 +33,14 @@ public class Stuscore {
 	private int total;
 	private double avg;
 	
+	public void calTotal() {
+		this.total = this.kor+this.eng+this.math;
+	}
+	
+	public void calAvg() {
+		this.avg = (this.kor+this.eng+this.math)/3.0;
+	}
+	
 	public int getNo() {
 		return no;
 	}

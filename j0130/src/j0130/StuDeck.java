@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class StuDeck {
@@ -50,6 +51,66 @@ public class StuDeck {
 		System.out.println();
 	}//stu_output
 	
+	// 2-2.성적출력 (매개변수가 있는 메소드)
+	void stu_output(List<Stuscore> list) {
+		System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+				title[0],title[1],title[2],title[3],
+				title[4],title[5],title[6]);
+		System.out.println("-----------------------------------------------------");
+		for(int i=0;i<list.size();i++) {
+			Stuscore s = list.get(i);
+			System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",
+					s.getNo(),s.getName(),s.getKor(),s.getEng(),
+					s.getMath(),s.getTotal(),s.getAvg());
+		}//for
+		System.out.println();
+	}//stu_output
+	
+	void stu_update() {
+		System.out.println("수정하려는 학생이름을 입력하세요.>>(0.이전페이지 이동) ");
+		name = scan.next();
+		if(name.equals("0")) return;
+		temp = 0;
+		for(int i=0;i<list.size();i++) {
+			Stuscore s = list.get(i);
+			if(s.getName().equals(name)) {
+				temp = 1;
+				System.out.println(name+"학생을 찾았습니다.");
+				System.out.println("[ 점수수정 ]");
+				System.out.println("1. 국어점수 : "+s.getKor());
+				System.out.println("2. 영어점수 : "+s.getEng());
+				System.out.println("3. 수학점수 : "+s.getMath());
+				System.out.println("0. 수정취소");
+				System.out.println("--------------------");
+				System.out.println("수정하려는 번호를 입력하세요.>> ");
+				choice = scan.nextInt();
+				switch(choice) {
+				case 1:
+					System.out.println("현재국어점수 : "+s.getKor());
+					System.out.println("변경국어점수를 입력하세요.>> ");
+					int input = scan.nextInt();
+					s.setKor(input); //국어점수변경
+					s.calTotal();    //합계변경
+					s.calAvg();      //평균변경
+					System.out.println("국어점수 "+input+" 점으로 변경되었습니다.");
+					System.out.println();
+					
+					break;
+				default:
+					System.out.println("수정이 취소되었습니다.");
+					System.out.println();
+					break;
+				}
+			}//if
+		}//for
+		if(temp == 0) {
+			System.out.println("찾고자 하는 학생이 없습니다. 다시 입력하세요. ");
+			System.out.println();
+		}
+		
+		
+	}//stu_update
+	
 	// 4.성적삭제
 	void stu_delete() {
 		System.out.println("삭제하려는 학생이름을 입력하세요.>>(0.이전페이지 이동) ");
@@ -77,8 +138,47 @@ public class StuDeck {
 		
 	}//stu_delete
 	
+	// 5.성적검색
+	void stu_search() {
+		System.out.println("[ 학생검색 ]");
+		System.out.println("1. 이름검색");
+		System.out.println("2. 점수검색");
+		System.out.println("------------------");
+		System.out.println("원하는 번호를 입력하세요.>> ");
+		choice = scan.nextInt();
+		switch(choice) {
+		case 1:
+			temp = 0;
+			System.out.println("검색할 이름을 입력하세요.>> ");
+			String search = scan.next();
+			List<Stuscore> slist = new ArrayList();
+			for(int i=0;i<list.size();i++) {
+				Stuscore s = list.get(i);
+				//equals:동일한이름, contains:포함되어 있는 이름
+//				if(s.getTotal() >= 70) { // 70점이상인 학생출력
+				if(s.getName().contains(search)) {
+					temp = 1;
+					slist.add(s);
+				}
+			}
+			
+			if(temp == 0) { //검색된 학생이 없으면
+				System.out.println("검색한 이름이 없습니다. 다시 입력하세요.");
+				System.out.println();
+			}else { //검색된 학생이 있으면
+				stu_output(slist);
+			}
+		}//switch
+	}
+	
 	// 6.성적정렬
 	void stu_sort(int choice) {
+		System.out.println("[ 성적정렬 ]");
+		System.out.println("1. 합계순 역순정렬");
+		System.out.println("2. 이름순 순차정렬");
+		System.out.println("---------------------");
+		System.out.println("원하는 번호를 입력하세요.>> ");
+		choice = scan.nextInt();
 		switch(choice) {
 		case 1: //합계순 역순정렬
 			list.sort(new Comparator<Stuscore>() {

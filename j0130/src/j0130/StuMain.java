@@ -24,17 +24,16 @@ public class StuMain {
 			case 2:
 				s.stu_output();
 				break;
-			
+			case 3:
+				s.stu_update();
+				break;
 			case 4:
 				s.stu_delete();
 				break;
+			case 5:
+				s.stu_search();
+				break;
 			case 6: //성적정렬
-				System.out.println("[ 성적정렬 ]");
-				System.out.println("1. 합계순 역순정렬");
-				System.out.println("2. 이름순 순차정렬");
-				System.out.println("---------------------");
-				System.out.println("원하는 번호를 입력하세요.>> ");
-				choice = scan.nextInt();
 				s.stu_sort(choice);
 				s.stu_output();
 				break;
