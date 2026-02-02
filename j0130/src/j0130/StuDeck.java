@@ -1,9 +1,13 @@
 package j0130;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class StuDeck {
@@ -73,6 +77,30 @@ public class StuDeck {
 		
 	}//stu_delete
 	
+	// 6.성적정렬
+	void stu_sort(int choice) {
+		switch(choice) {
+		case 1: //합계순 역순정렬
+			list.sort(new Comparator<Stuscore>() {
+				@Override
+				public int compare(Stuscore o1, Stuscore o2) {
+					return o2.getTotal()-o1.getTotal();
+				}
+			});
+			break;
+		case 2: //이름순 순차정렬
+			list.sort(new Comparator<Stuscore>() {
+				@Override
+				public int compare(Stuscore o1, Stuscore o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+			break;
+		}
+	}
+	
+	
+	
 	// 8.파일불러오기
 	void fileOpen() {
 		try {
@@ -97,6 +125,27 @@ public class StuDeck {
 			
 		} catch (Exception e) {e.printStackTrace();}
 	}//fileOpen
+	
+	// 09.파일저장
+	void fileSave() {
+		//파일저장하기
+		filePath = "c:/aaa/stu.txt";
+		try {
+			FileWriter fw = new FileWriter(filePath);
+			BufferedWriter bw = new BufferedWriter(fw);
+			for(int i=0;i<list.size();i++) {
+				Stuscore s = list.get(i);
+				String st = String.format("%d,%s,%d,%d,%d,%d,%.2f\n",
+						s.getNo(),s.getName(),s.getKor(),s.getEng(),
+						s.getMath(),s.getTotal(),s.getAvg()	);
+				bw.write(st);		
+			}
+			bw.close();
+			fw.close();
+		} catch (IOException e) { e.printStackTrace();}
+		System.out.println("파일이 저장되었습니다.");
+		System.out.println();
+	}
 	
 	// 00.화면출력
 	void screen() {
